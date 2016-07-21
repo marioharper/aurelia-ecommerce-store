@@ -1,0 +1,32 @@
+<template>
+	
+	<style>
+		.category{
+			margin: 5px;
+		}
+
+		.add-to-cart-btn{
+			margin: 20px;
+		}
+	</style>
+
+	<section class="au-animate">
+
+		<div class="pull-left" style="margin: 20px;">
+			<span repeat.for="category of product.categories" class="label label-primary category">${category.name}</span>
+		</div>
+
+	  <button class="add-to-cart-btn pull-right btn btn-primary" type="button" click.delegate="addToCart()">Add to cart</button>
+	  
+
+	  <span class="clearfix"></span>
+		
+		${product.name}
+
+		<p>${product.descriptions.detail}</p>
+    <a href="#">
+	  	<img src="${product.imageCollections[0].images[0].medium}">
+    </a>
+
+	</section>
+</template>

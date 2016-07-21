@@ -1,0 +1,39 @@
+<template>
+
+	<section class="au-animate">
+	  <h2>Shopping Cart</h2>
+	  
+	  <div class="container">
+
+	  	<table class="table">
+			  <tr>
+					<th></th>
+					<th>Price</th>
+					<th>Quantity</th>
+				</tr>
+				<tr repeat.for="item of items">
+					<td>
+						<img src="${item.product.imageCollections[0].images[0].small}">
+						<a route-href="route: product-details; params.bind: {id:item.product.id}">${item.product.name}</a>
+					</td>
+					<td>${item.product.pricing.regularPrice | currencyFormat}</td>
+					<td>
+						<input type="number" class="form-control" value.one-way="item.qty" change.delegate="updateItemQty(item.product.id, $event)">
+						<button class="btn btn-danger" type="button" click.delegate="remove(item.product.id)">
+							<i class="fa fa-trash-o" aria-hidden="true"></i>
+							Delete
+						</button>
+
+					</td>
+				</tr>
+			</table>
+
+			<span class="pull-right">Subtotal (${count} items): ${total | currencyFormat}</span>
+			<div class="clearfix"></div>
+			<button class="btn btn-warning pull-right" type="button">
+			Proceed to checkout
+		</button>
+	  </div>
+
+	</section>
+</template>
