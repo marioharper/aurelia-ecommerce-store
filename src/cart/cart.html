@@ -1,39 +1,64 @@
 <template>
 
-	<section class="au-animate">
-	  <h2>Shopping Cart</h2>
-	  
-	  <div class="container">
+	<style>
+		table{
+			width: 100%;
+		}
+	</style>
 
-	  	<table class="table">
-			  <tr>
-					<th></th>
-					<th>Price</th>
-					<th>Quantity</th>
-				</tr>
-				<tr repeat.for="item of items">
-					<td>
-						<img src="${item.product.imageCollections[0].images[0].small}">
-						<a route-href="route: product-details; params.bind: {id:item.product.id}">${item.product.name}</a>
-					</td>
-					<td>${item.product.pricing.regularPrice | currencyFormat}</td>
-					<td>
-						<input type="number" class="form-control" value.one-way="item.qty" change.delegate="updateItemQty(item.product.id, $event)">
-						<button class="btn btn-danger" type="button" click.delegate="remove(item.product.id)">
-							<i class="fa fa-trash-o" aria-hidden="true"></i>
-							Delete
-						</button>
+	<section class="au-animate">	  
 
-					</td>
-				</tr>
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--12-col" style="position: relative;">
+		  <table id="cart-table" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+			  <thead>
+			    <tr>
+			      <th class="mdl-data-table__cell--non-numeric">Product</th>
+			      <th>Price</th>
+			      <th>Quantity</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr repeat.for="item of items" data-product-id="${item.product.id}">
+						<td>
+							<img src="${item.product.imageCollections[0].images[0].small}">
+							<a route-href="route: product-details; params.bind: {id:item.product.id}">${item.product.name}</a>
+						</td>
+						<td>${item.product.pricing.regularPrice | currencyFormat}</td>
+						<td>
+							<div class="mdl-textfield mdl-js-textfield">
+						    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" value.one-way="item.qty" change.delegate="updateItemQty(item.product.id, $event)">
+						    <label class="mdl-textfield__label" for="sample2">Qty</label>
+						    <span class="mdl-textfield__error">Input is not a number!</span>
+						  </div>
+
+						</td>
+					</tr>
+			  </tbody>
 			</table>
+						<!-- Left aligned menu on top of button  -->
+			<button id="actions-menu-top-left" class="mdl-button mdl-js-button" show.bind="itemsSelected">
+			  Actions <i class="material-icons">arrow_drop_down</i>
+			</button>
 
-			<span class="pull-right">Subtotal (${count} items): ${total | currencyFormat}</span>
-			<div class="clearfix"></div>
-			<button class="btn btn-warning pull-right" type="button">
-			Proceed to checkout
-		</button>
-	  </div>
+			<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+			    data-mdl-for="actions-menu-top-left">
+			  <li class="mdl-menu__item" click.delegate="deleteSelected()">Delete</li>
+			  <li disabled class="mdl-menu__item">Add to wishlist</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--12-col">
+			<p>Subtotal (${count} items): ${total | currencyFormat}</p>
+			<button class="mdl-button mdl-js-button mdl-button--raised" type="button">
+				Proceed to checkout
+			</button>
+		</div>
+	</div>
+
 
 	</section>
 </template>

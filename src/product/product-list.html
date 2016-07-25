@@ -1,20 +1,64 @@
 <template>
+	<style>
+		.mdl-card {
+			overflow: visible;
+		}
+
+		.mdl-card__media{
+			position: relative;
+		}
+
+		.mdl-card__media img{
+			padding: 0;
+			width: 100%;
+		}
+		.mdl-card__media .rating{
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			color: red;
+		}
+		.mdl-card .add-btn{
+			position: absolute;
+			top: -28px;
+			right: 28px;
+			z-index: 1;
+		}
+
+
+	</style>
   <section class="au-animate">
     <h2>Products</h2>
 
-    <div class="row">
-
-    <div class="col-sm-6 col-md-4" repeat.for="product of products">
-	    <div class="thumbnail">
-      	<img src="${product.imageCollections[0].images[0].medium}">
-	      <div class="caption">
-	        <h3>${product.name}</h3>
-	        <p>${product.descriptions.detail}</p>
-	        <p>
-	        	<a class="btn btn-primary" role="button" route-href="route: product-details; params.bind: {id:product.id}">Details</a>
-	        </p>
-	      </div>
-	    </div>
-	  </div>
+    <div class="mdl-grid">
+  	  <div class="mdl-cell mdl-cell--12-col" repeat.for="product of products">
+				<div class="mdl-card mdl-shadow--4dp">
+			    <button class="add-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" click.delegate="addToCart(product)"> 
+					  <i class="material-icons">add_shopping_cart</i>
+					</button>
+				  <div class="mdl-card__media">
+				  	<img src="${product.imageCollections[0].images[0].medium}">
+				  	<div class="rating">
+				  		<i class="material-icons">star</i>
+				      <i class="material-icons">star</i>
+				      <i class="material-icons">star</i>
+				      <i class="material-icons">star_half</i>
+				      <i class="material-icons">star_border</i>
+			      </div>
+				  </div>
+				  <div class="mdl-card__supporting-text">
+				    ${product.name} 
+				  </div>
+				  <div class="mdl-card__supporting-text">
+				  	${product.descriptions.detail}
+				  </div>
+				  <div class="mdl-card__actions mdl-card--border">
+				    <a route-href="route: product-details; params.bind: {id:product.id}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+				      Details
+				    </a>
+				  </div>
+				</div>	
+  	  </div>
+    </div>
   </section>
 </template>

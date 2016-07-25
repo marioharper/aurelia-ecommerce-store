@@ -8,6 +8,7 @@ export class CartItem {
 
 
 import {inject} from 'aurelia-framework';
+import {computedFrom} from 'aurelia-framework';
 
 import {NotificationService} from 'notification/notification-service.js';
 import 'fetch';
@@ -21,6 +22,7 @@ export class CartService{
       this._items = []; // hit api?
 	}
 
+   @computedFrom('_items')
    get total(){
       let total = 0;
 
@@ -31,10 +33,12 @@ export class CartService{
       return total;
    }
 
+   @computedFrom('_items')
    get items(){
       return this._items;
    }
-
+   
+   @computedFrom('_items')
    get count(){
        let count = 0;
 

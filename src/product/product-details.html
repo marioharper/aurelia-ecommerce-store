@@ -5,28 +5,45 @@
 			margin: 5px;
 		}
 
+		.mdl-card{
+			width: 100%;
+			margin-top: 20px;
+		}
 		.add-to-cart-btn{
 			margin: 20px;
+		}
+
+		.product-image{
+			width: 100%;
 		}
 	</style>
 
 	<section class="au-animate">
 
-		<div class="pull-left" style="margin: 20px;">
-			<span repeat.for="category of product.categories" class="label label-primary category">${category.name}</span>
+		<div class="mdl-card mdl-shadow--2dp">
+		  <div class="mdl-grid">
+				  <div class="mdl-cell mdl-cell--4-col">
+				  	<img class="product-image" src="${product.imageCollections[0].images[0].medium}">
+				  </div>
+
+				  <div class="mdl-cell mdl-cell--8-col">
+				  	<h1>${product.name}</h1>
+				  	<h3>${product.pricing.regularPrice | currencyFormat}</h3>
+				  	<p>${product.descriptions.detail}</p>
+						<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" click.delegate="addToCart()">
+						  			  <i class="material-icons">add_shopping_cart</i> Add to cart
+						</button>
+				  </div>
+				</div>
+
+		  <div class="mdl-card__menu">
+	      <i class="material-icons">star</i>
+	      <i class="material-icons">star</i>
+	      <i class="material-icons">star</i>
+	      <i class="material-icons">star_half</i>
+	      <i class="material-icons">star_border</i>
+		  </div>
 		</div>
-
-	  <button class="add-to-cart-btn pull-right btn btn-primary" type="button" click.delegate="addToCart()">Add to cart</button>
-	  
-
-	  <span class="clearfix"></span>
-		
-		${product.name}
-
-		<p>${product.descriptions.detail}</p>
-    <a href="#">
-	  	<img src="${product.imageCollections[0].images[0].medium}">
-    </a>
 
 	</section>
 </template>
