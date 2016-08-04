@@ -1,3 +1,8 @@
 <template>
-	<div class="material-icons ${(count > 0) ? 'mdl-badge mdl-badge--overlap' : ''}" data-badge="${count}">shopping_cart</div>
+	<span class="cart">
+    <span class="cart__icon">
+      <i class="material-icons">shopping_cart</i>
+    </span>
+    <span class="cart__count">${count}</span>
+  </span>
 </template>

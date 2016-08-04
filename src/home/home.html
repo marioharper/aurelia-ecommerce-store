@@ -1,5 +1,21 @@
 <template>
-  <section class="au-animate">
-    <h2>${heading}</h2>
+  
+  <require from="product/product-list.js"></require>
+
+  <section class="hero mdl-typography--text-center">
+    <div class="hero__content-wrap">
+      <div class="hero__content">
+	      <h1 class="hero__title">Crystal Clear</h1>
+	      <a href="" class="hero__button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Shop Now</a>
+      </div>
+    </div>
+    <img class="hero__image" src="img/hero.jpg" alt="">
+	</section>
+
+	<section class="section-title mdl-typography--text-center">
+      <h3 class="section-title">Featured Items</h3>
   </section>
+
+	<product-list products.bind="featuredProducts"></product-list>
+
 </template>

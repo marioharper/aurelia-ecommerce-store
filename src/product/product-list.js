@@ -1,15 +1,13 @@
-import {ProductService} from 'product/product-service.js';
 import {CartService} from 'cart/cart-service.js';
 import {inject} from 'aurelia-framework';
+import {bindable} from 'aurelia-framework';
 
-
-@inject(ProductService, CartService)
+@inject(CartService)
 export class ProductList{
+	@bindable products = [];
 
-	constructor(productService, cartService){
-		this.productsService = productService;
+	constructor(cartService){
 		this.cartService = cartService;
-		this.products = productService.getProducts();
 	}
 
 	addToCart(product){

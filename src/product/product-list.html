@@ -1,64 +1,29 @@
 <template>
-	<style>
-		.mdl-card {
-			overflow: visible;
-		}
-
-		.mdl-card__media{
-			position: relative;
-		}
-
-		.mdl-card__media img{
-			padding: 0;
-			width: 100%;
-		}
-		.mdl-card__media .rating{
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			color: red;
-		}
-		.mdl-card .add-btn{
-			position: absolute;
-			top: -28px;
-			right: 28px;
-			z-index: 1;
-		}
-
-
-	</style>
   <section class="au-animate">
-    <h2>Products</h2>
 
-    <div class="mdl-grid">
-  	  <div class="mdl-cell mdl-cell--12-col" repeat.for="product of products">
-				<div class="mdl-card mdl-shadow--4dp">
-			    <button class="add-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" click.delegate="addToCart(product)"> 
-					  <i class="material-icons">add_shopping_cart</i>
-					</button>
-				  <div class="mdl-card__media">
-				  	<img src="${product.imageCollections[0].images[0].medium}">
-				  	<div class="rating">
-				  		<i class="material-icons">star</i>
-				      <i class="material-icons">star</i>
-				      <i class="material-icons">star</i>
-				      <i class="material-icons">star_half</i>
-				      <i class="material-icons">star_border</i>
-			      </div>
-				  </div>
-				  <div class="mdl-card__supporting-text">
-				    ${product.name} 
-				  </div>
-				  <div class="mdl-card__supporting-text">
-				  	${product.descriptions.detail}
-				  </div>
-				  <div class="mdl-card__actions mdl-card--border">
-				    <a route-href="route: product-details; params.bind: {id:product.id}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-				      Details
-				    </a>
-				  </div>
-				</div>	
-  	  </div>
+    <div class="product-grid mdl-grid">
+
+    	<div class="product-grid__item mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone" repeat.for="product of products">
+      	<div class="product-card mdl-shadow--2dp">
+          <div class="product-card__media">
+              <img src="img/shirt.jpg" alt="">
+          </div>
+          <div class="product-card__details">
+              <div class="product-card__title">${product.name}</div>
+              <div class="product-card__price">${product.pricing.regularPrice | currencyFormat}</div>
+          </div>
+          <div class="product-card__actions">
+              <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" route-href="route: product-details; params.bind: {id:product.id}">
+                  View
+                  <i class="material-icons">zoom_in</i>
+              </a>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" click.delegate="addToCart(product)">
+                  Buy
+                  <i class="material-icons">add_shopping_cart</i>
+              </button>
+          </div>
+	      </div>
+	  	</div>
     </div>
   </section>
 </template>

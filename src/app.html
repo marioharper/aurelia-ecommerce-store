@@ -1,5 +1,4 @@
 <template>
-  <require from="material-design-lite/material.min.css"></require>
   <require from="cart/cart-widget.js"></require>
 
   <!-- Always shows a header, even in smaller screens. -->
@@ -12,25 +11,30 @@
 	      <!-- Add spacer, to align navigation to the right -->
 	      <div class="mdl-layout-spacer"></div>
 
-	      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-	                  mdl-textfield--floating-label mdl-textfield--align-right">
-	        <label class="mdl-button mdl-js-button mdl-button--icon"
-	               for="waterfall-exp">
-	          <i class="material-icons">search</i>
-	        </label>
-	        <div class="mdl-textfield__expandable-holder">
-	          <input class="mdl-textfield__input" type="text" name="sample"
-	                 id="waterfall-exp">
-	        </div>
-	      </div>
+	      <div class="search mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" id="sample6">
+            <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+          </div>
+        </div>
 
-         <a class="mdl-navigation__link" route-href="route: cart "><cart-widget></cart-widget></a>
-	      
+	      <nav class="mdl-navigation">
+          <a repeat.for="row of router.navigation" class="mdl-navigation__link" href.bind="row.href">${row.title}</a>
+        </nav>
+        <nav class="mdl-navigation mdl-navigation--accent">
+          <a class="mdl-navigation__link mdl-navigation__link--accent mdl-layout--large-screen-only" route-href="route: cart ">
+           	<cart-widget class="cart"></cart-widget>
+          </a>
+        </nav>
+
 	    </div>
 	  </header>
 	  
 	  <div class="mdl-layout__drawer">
-	    <span class="mdl-layout-title">${router.title}</span>
+	    <span class="mdl-layout-title">Shop Now</span>
 	    <nav class="mdl-navigation">
 	      <a repeat.for="row of router.navigation" class="mdl-navigation__link" href.bind="row.href">${row.title}</a>
 	    </nav>
@@ -43,62 +47,62 @@
 	    </div>
 
 	    <footer class="mdl-mega-footer">
-			  <div class="mdl-mega-footer__middle-section">
+        <div class="mdl-mega-footer__middle-section">
 
-			    <div class="mdl-mega-footer__drop-down-section">
-			      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-			      <h1 class="mdl-mega-footer__heading">Features</h1>
-			      <ul class="mdl-mega-footer__link-list">
-			        <li><a href="#">About</a></li>
-			        <li><a href="#">Terms</a></li>
-			        <li><a href="#">Partners</a></li>
-			        <li><a href="#">Updates</a></li>
-			      </ul>
-			    </div>
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">Features</h1>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Partners</a></li>
+              <li><a href="#">Updates</a></li>
+            </ul>
+          </div>
 
-			    <div class="mdl-mega-footer__drop-down-section">
-			      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-			      <h1 class="mdl-mega-footer__heading">Details</h1>
-			      <ul class="mdl-mega-footer__link-list">
-			        <li><a href="#">Specs</a></li>
-			        <li><a href="#">Tools</a></li>
-			        <li><a href="#">Resources</a></li>
-			      </ul>
-			    </div>
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">Details</h1>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="#">Specs</a></li>
+              <li><a href="#">Tools</a></li>
+              <li><a href="#">Resources</a></li>
+            </ul>
+          </div>
 
-			    <div class="mdl-mega-footer__drop-down-section">
-			      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-			      <h1 class="mdl-mega-footer__heading">Technology</h1>
-			      <ul class="mdl-mega-footer__link-list">
-			        <li><a href="#">How it works</a></li>
-			        <li><a href="#">Patterns</a></li>
-			        <li><a href="#">Usage</a></li>
-			        <li><a href="#">Products</a></li>
-			        <li><a href="#">Contracts</a></li>
-			      </ul>
-			    </div>
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">Technology</h1>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="#">How it works</a></li>
+              <li><a href="#">Patterns</a></li>
+              <li><a href="#">Usage</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Contracts</a></li>
+            </ul>
+          </div>
 
-			    <div class="mdl-mega-footer__drop-down-section">
-			      <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
-			      <h1 class="mdl-mega-footer__heading">FAQ</h1>
-			      <ul class="mdl-mega-footer__link-list">
-			        <li><a href="#">Questions</a></li>
-			        <li><a href="#">Answers</a></li>
-			        <li><a href="#">Contact us</a></li>
-			      </ul>
-			    </div>
+          <div class="mdl-mega-footer__drop-down-section">
+            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+            <h1 class="mdl-mega-footer__heading">FAQ</h1>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="#">Questions</a></li>
+              <li><a href="#">Answers</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
 
-			  </div>
+        </div>
 
-			  <div class="mdl-mega-footer__bottom-section">
-			    <div class="mdl-logo">Title</div>
-			    <ul class="mdl-mega-footer__link-list">
-			      <li><a href="#">Help</a></li>
-			      <li><a href="#">Privacy & Terms</a></li>
-			    </ul>
-			  </div>
+        <div class="mdl-mega-footer__bottom-section">
+            <div class="mdl-logo">Title</div>
+            <ul class="mdl-mega-footer__link-list">
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+        </div>
 
-			</footer>
+      </footer>
 	  </main>
 	</div>
 </template>
